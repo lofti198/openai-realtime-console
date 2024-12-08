@@ -467,6 +467,27 @@ export function ConsolePage() {
           return realtimeEvents.concat(realtimeEvent);
         }
       });
+
+      // Check for "server response.done" event
+      if (
+        realtimeEvent.event.type === 'response.done' &&
+        realtimeEvent.event.response
+      ) {
+        const transcript = realtimeEvent.event.response.output?.[0]?.content?.[0]
+          ?.transcript;
+        if (transcript) {
+          console.log(`Server Response Transcript: ${transcript}`);
+          
+          // Check if the transcript contains the letter "a"
+          if (transcript.toLowerCase().includes('a')) {
+            console.log('Transcript contains the letter "a". Disconnecting...');
+            disconnectConversation(); // Call the disconnect function
+          }
+        } else {
+          console.log('Server Response: No transcript available.');
+        }
+      }
+
     });
     client.on('error', (event: any) => console.error(event));
     client.on('conversation.interrupted', async () => {
