@@ -478,11 +478,12 @@ export function ConsolePage() {
         if (transcript) {
           console.log(`Server Response Transcript: ${transcript}`);
           
-          // Check if the transcript contains the letter "a"
-          if (transcript.toLowerCase().includes('a')) {
-            console.log('Transcript contains the letter "a". Disconnecting...');
-            disconnectConversation(); // Call the disconnect function
-          }
+          // // Check if the transcript contains the letter "a"
+          // if (transcript.toLowerCase().includes('a')) {
+          //   console.log('Transcript contains the letter "a". Can Disconnecting...');
+          //   // disconnectConversation(); // Call the disconnect function
+            
+          // }
         } else {
           console.log('Server Response: No transcript available.');
         }
@@ -509,6 +510,26 @@ export function ConsolePage() {
           24000
         );
         item.formatted.file = wavFile;
+
+
+        // Check if the transcript contains the letter "a"
+        const transcript = item.formatted.text || item.formatted.transcript;
+        // if (transcript && transcript.toLowerCase().includes('a')) {
+        //   console.log('Transcript contains the letter "a". Will disconnect after playback.');
+
+        //   // Ensure wavFile is defined and create an audio element
+        //   if (wavFile && wavFile.url) {
+        //     const audio = new Audio(wavFile.url);
+        //     audio.onended = () => {
+        //       console.log('Playback finished. Disconnecting...');
+        //       disconnectConversation();
+        //     };
+        //     audio.play();
+        //   } else {
+        //     console.error('Wav file is not available for playback.');
+        //   }
+        // }
+
       }
       setItems(items);
     });
